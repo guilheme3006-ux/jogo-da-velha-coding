@@ -26,8 +26,18 @@ Desenvolver um jogo da velha em Python, executado no terminal, utilizando matriz
 O jogo deverá contabilizar as vitórias de cada jogador e os empates durante a sessão.
 
 ## 5. Integrantes e divisão de tarefas
-- Integrante 1 — [guilherme]: estrutura do tabuleiro, placar, testes e exibição.
-- Integrante 2 — [nicolas]: jogadas, validação, reinicio, documentação e verificação de vitória ou empate.
+° Integrante 1 — [guilherme]: 
+- Estrutura da matriz do tabuleiro e exibição com for aninhado.
+- Validação segura de entradas (tratamento de erros de letras, vazios e fora do intervalo).
+- Verificação automática de empate e reinício do tabuleiro.
+- Roteiro e gravação da parte prática do vídeo.
+  
+° Integrante 2 — [nicolas]:
+- Menu interativo controlado por while e fluxo principal do jogo.
+- Lógica de alternância de jogadores (X e O) e conclusão da partida.
+- Verificação automática de vitória por laços (for em linhas, colunas e diagonais).
+- Placar acumulado e implementação do desafio escolhido.
+- Relatório técnico em PDF e organização final do repositório.
  
 
 ## 6. Tecnologias utilizadas
