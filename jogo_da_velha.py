@@ -29,7 +29,13 @@ while opcao != "4":
     if opcao == "1":
         print("\n--- Iniciando a partida ---")
         
-        # Controlo de turnos e fluxo da partida
+        # Reiniciar o tabuleiro limpo para a nova partida
+        tabuleiro = [
+            [" ", " ", " "],
+            [" ", " ", " "],
+            [" ", " ", " "]
+        ]
+        
         vez = "X"
         partida_em_andamento = True
         
@@ -82,13 +88,57 @@ while opcao != "4":
             # --- CHETAGEM DE CASA OCUPADA E ATUALIZAÇÃO ---
             if tabuleiro[linha][coluna] == " ":
                 tabuleiro[linha][coluna] = vez
-                print(f"Jogada efectuada com sucesso na posição [{linha}][{coluna}]!")
                 
-                # Alternar a vez entre X e O
-                if vez == "X":
-                    vez = "O"
+                # --- VERIFICAÇÃO DE VITÓRIA POR LAÇOS (Dia 28) ---
+                venceu = False
+
+                # 1. Verificar todas as linhas usando for
+                for i in range(3):
+                    if tabuleiro[i][0] == vez and tabuleiro[i][1] == vez and tabuleiro[i][2] == vez:
+                        venceu = True
+
+                # 2. Verificar todas as colunas usando for
+                for j in range(3):
+                    if tabuleiro[0][j] == vez and tabuleiro[1][j] == vez and tabuleiro[2][j] == vez:
+                        venceu = True
+
+                # 3. Verificar diagonal principal
+                if tabuleiro[0][0] == vez and tabuleiro[1][1] == vez and tabuleiro[2][2] == vez:
+                    venceu = True
+
+                # 4. Verificar diagonal secundária
+                if tabuleiro[0][2] == vez and tabuleiro[1][1] == vez and tabuleiro[2][0] == vez:
+                    venceu = True
+
+                # Se alguém venceu
+                if venceu:
+                    print("\nTabuleiro final:")
+                    print("     0    1    2 ")
+                    for i in range(3):
+                        linha_formatada = ""
+                        for j in range(3):
+                            linha_formatada += f" {tabuleiro[i][j]} "
+                            if j < 2:
+                                linha_formatada += "|"
+                        print(f"  {i}  {linha_formatada}")
+                        if i < 2:
+                            print("     ---|---|---")
+
+                    print(f"\n🎉 PARABÉNS! O jogador {vez} VENCEU A PARTIDA!")
+                    
+                    # Atualizar o placar acumulado
+                    if vez == "X":
+                        placar_x += 1
+                    else:
+                        placar_o += 1
+                        
+                    partida_em_andamento = False
                 else:
-                    vez = "X"
+                    # Alternar a vez entre X e O se não houve vitória
+                    if vez == "X":
+                        vez = "O"
+                    else:
+                        vez = "X"
             else:
                 print("Atenção: Esta casa já está ocupada! Escolha outra.")
                 
