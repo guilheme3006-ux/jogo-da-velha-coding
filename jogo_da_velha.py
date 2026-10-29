@@ -9,22 +9,23 @@ tabuleiro = [
 
 opcao = ""
 
-# Placar acumulado global (mantém-se entre as partidas, exigência do Dia 30)
+# Placar acumulado global
 placar_x = 0
 placar_o = 0
 empates = 0
 
 # Menu principal controlado por while (Exigência do professor)
-while opcao != "4":
+while opcao != "5":
     print("\n==============================")
     print("       JOGO DA VELHA          ")
     print("==============================")
     print("1. Jogar")
     print("2. Ver Regras")
-    print("3. Ver Placar")
-    print("4. Sair")
+    print("3. Ver Placar e Estatísticas")
+    print("4. Desafio: Estatísticas da Sessão")
+    print("5. Sair")
     
-    opcao = input("Escolha uma opção (1 a 4): ")
+    opcao = input("Escolha uma opção (1 a 5): ")
     
     if opcao == "1":
         print("\n--- Iniciando a partida ---")
@@ -118,7 +119,6 @@ while opcao != "4":
 
                     print(f"\n🎉 PARABÉNS! O jogador {vez} VENCEU A PARTIDA!")
                     
-                    # Atualiza o placar acumulado sem zerar os pontos anteriores
                     if vez == "X":
                         placar_x += 1
                     else:
@@ -171,7 +171,32 @@ while opcao != "4":
         print(f"Jogador X: {placar_x} | Jogador O: {placar_o} | Empates: {empates}")
         
     elif opcao == "4":
+        # --- DESAFIO DE LÓGICA: ESTATÍSTICAS DA SESSÃO (Dia 31) ---
+        print("\n--- 📊 ESTATÍSTICAS DA SESSÃO ---")
+        total_partidas = placar_x + placar_o + empates
+        print(f"Total de partidas jogadas: {total_partidas}")
+        
+        if total_partidas > 0:
+            porc_x = (placar_x / total_partidas) * 100
+            porc_o = (placar_o / total_partidas) * 100
+            porc_empate = (empates / total_partidas) * 100
+            
+            print(f"Vitórias do X: {porc_x:.1f}%")
+            print(f"Vitórias do O: {porc_o:.1f}%")
+            print(f"Empates: {porc_empate:.1f}%")
+            
+            print("\nLíder atual da sessão:")
+            if placar_x > placar_o:
+                print("🏆 Jogador X está a liderar!")
+            elif placar_o > placar_x:
+                print("🏆 Jogador O está a liderar!")
+            else:
+                print("⚖️ A partida está empatada no acumulado geral!")
+        else:
+            print("Ainda não foram jogadas partidas nesta sessão.")
+        
+    elif opcao == "5":
         print("\nA encerrar o programa. Até breve!")
         
     else:
-        print("\n[Erro] Opção inválida! Escolha um número de 1 a 4.")
+        print("\n[Erro] Opção inválida! Escolha um número de 1 a 5.")
