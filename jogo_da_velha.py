@@ -9,7 +9,7 @@ tabuleiro = [
 
 opcao = ""
 
-# Placar acumulado
+# Placar acumulado global (mantém-se entre as partidas, exigência do Dia 30)
 placar_x = 0
 placar_o = 0
 empates = 0
@@ -29,7 +29,7 @@ while opcao != "4":
     if opcao == "1":
         print("\n--- Iniciando a partida ---")
         
-        # Reiniciar o tabuleiro limpo para a nova partida
+        # Limpar / resetar o tabuleiro usando for aninhado (Exigência do Dia 30)
         for i in range(3):
             for j in range(3):
                 tabuleiro[i][j] = " "
@@ -87,26 +87,22 @@ while opcao != "4":
             if tabuleiro[linha][coluna] == " ":
                 tabuleiro[linha][coluna] = vez
                 
-                # --- 1. VERIFICAÇÃO DE VITÓRIA POR LAÇOS (Dia 28) ---
+                # --- 1. VERIFICAÇÃO DE VITÓRIA POR LAÇOS ---
                 venceu = False
 
-                # Verificar linhas
                 for i in range(3):
                     if tabuleiro[i][0] == vez and tabuleiro[i][1] == vez and tabuleiro[i][2] == vez:
                         venceu = True
 
-                # Verificar colunas
                 for j in range(3):
                     if tabuleiro[0][j] == vez and tabuleiro[1][j] == vez and tabuleiro[2][j] == vez:
                         venceu = True
 
-                # Verificar diagonais
                 if tabuleiro[0][0] == vez and tabuleiro[1][1] == vez and tabuleiro[2][2] == vez:
                     venceu = True
                 if tabuleiro[0][2] == vez and tabuleiro[1][1] == vez and tabuleiro[2][0] == vez:
                     venceu = True
 
-                # Se alguém venceu
                 if venceu:
                     print("\nTabuleiro final:")
                     print("     0    1    2 ")
@@ -122,6 +118,7 @@ while opcao != "4":
 
                     print(f"\n🎉 PARABÉNS! O jogador {vez} VENCEU A PARTIDA!")
                     
+                    # Atualiza o placar acumulado sem zerar os pontos anteriores
                     if vez == "X":
                         placar_x += 1
                     else:
@@ -130,7 +127,7 @@ while opcao != "4":
                     partida_em_andamento = False
                     break
                 
-                # --- 2. VERIFICAÇÃO DE EMPATE POR FOR ANINHADO (Dia 29) ---
+                # --- 2. VERIFICAÇÃO DE EMPATE POR FOR ANINHADO ---
                 vazias = 0
                 for i in range(3):
                     for j in range(3):
@@ -155,7 +152,7 @@ while opcao != "4":
                     partida_em_andamento = False
                     break
 
-                # Alternar a vez se ninguém venceu e não empatou
+                # Alternar a vez
                 if vez == "X":
                     vez = "O"
                 else:
