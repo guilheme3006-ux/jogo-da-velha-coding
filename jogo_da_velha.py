@@ -199,4 +199,4 @@ while opcao != "5":
         print("\nA encerrar o programa. Até breve!")
         
     else:
-        print("\n[Erro] Opção inválida! Escolha um número de 1 a 5.")
+        print("\n[Erro] Opção inválida! Escolha um número de 1 a 5.") 
