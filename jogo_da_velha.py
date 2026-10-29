@@ -30,11 +30,9 @@ while opcao != "4":
         print("\n--- Iniciando a partida ---")
         
         # Reiniciar o tabuleiro limpo para a nova partida
-        tabuleiro = [
-            [" ", " ", " "],
-            [" ", " ", " "],
-            [" ", " ", " "]
-        ]
+        for i in range(3):
+            for j in range(3):
+                tabuleiro[i][j] = " "
         
         vez = "X"
         partida_em_andamento = True
@@ -89,24 +87,22 @@ while opcao != "4":
             if tabuleiro[linha][coluna] == " ":
                 tabuleiro[linha][coluna] = vez
                 
-                # --- VERIFICAÇÃO DE VITÓRIA POR LAÇOS (Dia 28) ---
+                # --- 1. VERIFICAÇÃO DE VITÓRIA POR LAÇOS (Dia 28) ---
                 venceu = False
 
-                # 1. Verificar todas as linhas usando for
+                # Verificar linhas
                 for i in range(3):
                     if tabuleiro[i][0] == vez and tabuleiro[i][1] == vez and tabuleiro[i][2] == vez:
                         venceu = True
 
-                # 2. Verificar todas as colunas usando for
+                # Verificar colunas
                 for j in range(3):
                     if tabuleiro[0][j] == vez and tabuleiro[1][j] == vez and tabuleiro[2][j] == vez:
                         venceu = True
 
-                # 3. Verificar diagonal principal
+                # Verificar diagonais
                 if tabuleiro[0][0] == vez and tabuleiro[1][1] == vez and tabuleiro[2][2] == vez:
                     venceu = True
-
-                # 4. Verificar diagonal secundária
                 if tabuleiro[0][2] == vez and tabuleiro[1][1] == vez and tabuleiro[2][0] == vez:
                     venceu = True
 
@@ -126,19 +122,44 @@ while opcao != "4":
 
                     print(f"\n🎉 PARABÉNS! O jogador {vez} VENCEU A PARTIDA!")
                     
-                    # Atualizar o placar acumulado
                     if vez == "X":
                         placar_x += 1
                     else:
                         placar_o += 1
                         
                     partida_em_andamento = False
+                    break
+                
+                # --- 2. VERIFICAÇÃO DE EMPATE POR FOR ANINHADO (Dia 29) ---
+                vazias = 0
+                for i in range(3):
+                    for j in range(3):
+                        if tabuleiro[i][j] == " ":
+                            vazias += 1
+                            
+                if vazias == 0 and not venceu:
+                    print("\nTabuleiro final:")
+                    print("     0    1    2 ")
+                    for i in range(3):
+                        linha_formatada = ""
+                        for j in range(3):
+                            linha_formatada += f" {tabuleiro[i][j]} "
+                            if j < 2:
+                                linha_formatada += "|"
+                        print(f"  {i}  {linha_formatada}")
+                        if i < 2:
+                            print("     ---|---|---")
+
+                    print("\n🤝 FIM DE JOGO! Deu empate!")
+                    empates += 1
+                    partida_em_andamento = False
+                    break
+
+                # Alternar a vez se ninguém venceu e não empatou
+                if vez == "X":
+                    vez = "O"
                 else:
-                    # Alternar a vez entre X e O se não houve vitória
-                    if vez == "X":
-                        vez = "O"
-                    else:
-                        vez = "X"
+                    vez = "X"
             else:
                 print("Atenção: Esta casa já está ocupada! Escolha outra.")
                 
