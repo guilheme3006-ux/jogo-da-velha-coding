@@ -1,152 +1,188 @@
+# Jogo da Velha em Python
 
-Jogo da Velha em Python
-Projeto avaliativo da disciplina de Coding — 2ª Avaliação
-Curso: Bacharelado em Ciência da Computação
-Instituição: UNINASSAU — Teresina (PI)
-Ano: 2026
+**Projeto da 2ª Avaliação — Disciplina de Coding**  
+**Curso:** Bacharelado em Ciência da Computação  
+**Instituição:** UNINASSAU — Teresina (PI)  
+**Ano:** 2026
 
-Sobre o projeto
-Este projeto consiste no desenvolvimento de um Jogo da Velha para dois jogadores, executado diretamente no terminal e implementado em Python 3. Seu objetivo é aplicar, na prática, conteúdos de lógica de programação, como variáveis, operadores, estruturas de decisão, laços de repetição e matrizes bidimensionais.
+## Sobre o projeto
 
-O programa foi organizado de maneira procedural, com blocos de código controlados por estruturas como if, elif, else, while e for, sem depender de bibliotecas externas.
+Este projeto apresenta um **Jogo da Velha para dois jogadores**, desenvolvido em **Python 3** e executado no terminal. O objetivo é aplicar conceitos estudados na disciplina de Coding, como variáveis, operadores, estruturas condicionais, laços de repetição e matrizes.
 
-Funcionalidades
-Partida local entre dois jogadores, identificados por X e O.
-Tabuleiro de 3 linhas por 3 colunas, representado por uma matriz.
-Menu interativo para jogar, consultar regras, visualizar placar, acessar estatísticas e sair.
-Alternância automática de turnos, começando pelo jogador X.
-Leitura das coordenadas de linha e coluna, de 0 a 2.
-Validação de entradas inválidas, incluindo letras, campos vazios e números fora do intervalo.
-Bloqueio de jogadas em casas já ocupadas.
-Verificação de vitória nas linhas, colunas e diagonais.
-Identificação automática de empate quando o tabuleiro está completo e não há vencedor.
-Placar acumulado de vitórias de X, vitórias de O e empates durante a execução.
-Reinício do tabuleiro a cada nova partida, sem apagar o placar da sessão.
-Estatísticas da sessão com percentuais e indicação do jogador com mais vitórias.
-Regras do jogo
-O jogo é disputado por dois jogadores: X e O.
-O jogador X inicia a partida.
-A cada rodada, o jogador escolhe uma linha e uma coluna, ambas de 0 a 2.
-Só é possível marcar uma casa que esteja vazia.
-Vence quem alinhar três símbolos iguais na horizontal, vertical ou diagonal.
-Se todas as casas forem preenchidas sem uma combinação vencedora, a partida termina em empate.
-Após o término, é possível iniciar outra partida pelo menu, mantendo o placar da sessão.
-Exemplo de tabuleiro
-    0   1   2
-0   X | O | X
-   ---|---|---
-1   O | X | O
-   ---|---|---
-2     |   | X
-Neste exemplo, X venceu pela diagonal principal.
+O código segue uma abordagem procedural, sem bibliotecas externas.
 
-Requisitos
-Python 3 instalado no computador.
-Um terminal ou prompt de comando (Windows, Linux ou macOS).
-Nenhuma biblioteca externa é necessária.
-Para conferir a instalação do Python, execute:
+## Funcionalidades
 
+- Partida local entre os jogadores **X** e **O**.
+- Tabuleiro **3 × 3**, representado por uma matriz.
+- Alternância automática dos turnos, começando pelo jogador **X**.
+- Validação de coordenadas e bloqueio de casas já ocupadas.
+- Verificação de vitória por linha, coluna ou diagonal.
+- Identificação de empate ao fim da partida.
+- Placar acumulado durante a sessão.
+- Nova partida com o tabuleiro limpo e o placar preservado.
+- Estatísticas com percentuais de vitórias e empates.
+
+## Como executar
+
+### 1. Requisitos
+
+- **Python 3** instalado no computador.
+- Terminal ou prompt de comando (Windows, Linux ou macOS).
+- Nenhuma biblioteca externa é necessária.
+
+Confira se o Python está instalado:
+
+```bash
 python --version
-Em alguns sistemas, o comando é python3 --version.
+```
 
-Como instalar e executar
-1. Baixe o projeto pelo botão Code > Download ZIP do GitHub ou clone o repositório:
+Em alguns sistemas, utilize `python3 --version`.
 
+### 2. Baixar o projeto
+
+É possível baixar o ZIP pelo botão **Code → Download ZIP** na página do repositório ou cloná-lo com Git:
+
+```bash
 git clone https://github.com/guilheme3006-ux/jogo-da-velha-coding.git
-2. Acesse a pasta do projeto:
+```
 
+### 3. Abrir a pasta e iniciar o jogo
+
+```bash
 cd jogo-da-velha-coding
-3. Execute o arquivo principal:
-
 python jogo_da_velha.py
-Se necessário, utilize python3 jogo_da_velha.py.
+```
 
-Como usar o menu
-Ao iniciar, o programa exibe as opções:
+Se o comando `python` não funcionar, tente:
 
+```bash
+python3 jogo_da_velha.py
+```
+
+## Menu principal
+
+Ao iniciar, o programa apresenta cinco opções:
+
+```text
 ==============================
-        JOGO DA VELHA
+         JOGO DA VELHA
 ==============================
 1. Jogar
 2. Ver Regras
 3. Ver Placar e Estatísticas
 4. Desafio: Estatísticas da Sessão
 5. Sair
-Opção	Ação
-1	Inicia uma nova partida, limpando o tabuleiro.
-2	Exibe as regras do Jogo da Velha.
-3	Mostra o placar acumulado de X, O e empates.
-4	Mostra o total de partidas, os percentuais de resultados e o líder da sessão.
-5	Encerra o programa.
-Durante uma partida: informe as coordenadas solicitadas. Na pergunta da linha, digitar 9 permite interromper a partida em andamento e voltar ao menu. Essa opção não se aplica ao campo da coluna.
+```
 
-Organização do código
-O projeto está implementado no arquivo jogo_da_velha.py. As principais partes do programa são:
+**O que faz cada opção:**
 
-Bloco	Conteúdo aplicado	Responsabilidade
-Inicialização	Variáveis e matriz (lista de listas)	Criar o tabuleiro vazio e iniciar os contadores do placar.
-Menu principal	while, if e elif	Apresentar as opções e manter o programa ativo até a saída.
-Partida e validação	while, for e condições	Ler coordenadas válidas e impedir a sobrescrita de casas.
-Exibição do tabuleiro	Matriz e for aninhados	Percorrer e apresentar as nove posições do jogo.
-Fim da partida	for, condições e operadores	Verificar vitórias nas linhas, colunas e diagonais e detectar empates.
-Reinício	for aninhados	Limpar a matriz ao iniciar outra partida.
-Estatísticas	Variáveis e operadores aritméticos	Calcular resultados acumulados e percentuais da sessão.
-Representação do tabuleiro
-O tabuleiro é uma matriz 3 × 3, criada como uma lista contendo três listas:
+1. **Jogar:** inicia uma partida com o tabuleiro vazio.
+2. **Ver Regras:** explica as regras do jogo.
+3. **Ver Placar e Estatísticas:** exibe as vitórias de X, de O e os empates.
+4. **Estatísticas da Sessão:** apresenta o total de partidas, os percentuais de resultados e o líder da sessão.
+5. **Sair:** encerra o programa.
 
+> **Importante:** durante a partida, as coordenadas de linha e coluna vão de `0` a `2`. Na solicitação da **linha**, é possível digitar `9` para interromper a partida e voltar ao menu.
+
+## Regras do jogo
+
+1. O jogador **X** começa; depois, os participantes alternam os turnos.
+2. Em cada turno, é escolhida uma linha e uma coluna, de `0` a `2`.
+3. Não é permitido marcar uma posição já ocupada.
+4. Ganha quem formar uma linha, coluna ou diagonal com três símbolos iguais.
+5. Caso todas as casas sejam preenchidas sem vencedor, ocorre empate.
+
+### Exemplo de tabuleiro
+
+```text
+    0   1   2
+0   X | O | X
+   ---+---+---
+1   O | X | O
+   ---+---+---
+2     |   | X
+```
+
+No exemplo, **X vence pela diagonal principal**.
+
+## Organização do código
+
+O projeto é composto pelo arquivo principal `jogo_da_velha.py` e por este `README.md`.
+
+O programa trabalha com estes blocos:
+
+- **Inicialização:** cria a matriz 3 × 3 e os contadores do placar.
+- **Menu principal (`while`):** exibe as opções até a escolha de sair.
+- **Validação de entradas:** aceita apenas coordenadas válidas e impede jogadas em casas ocupadas.
+- **Exibição do tabuleiro (`for` aninhados):** percorre linhas e colunas da matriz.
+- **Verificação do resultado:** identifica vitórias e empates.
+- **Reinício da partida:** limpa a matriz sem zerar o placar.
+- **Estatísticas da sessão:** calcula os percentuais dos resultados.
+
+### Matriz do tabuleiro
+
+O tabuleiro é armazenado como uma lista com três listas, uma para cada linha:
+
+```python
 tabuleiro = [
     [" ", " ", " "],
     [" ", " ", " "],
     [" ", " ", " "]
 ]
-Cada posição é acessada pelo formato tabuleiro[linha][coluna]. Os valores podem ser "X", "O" ou um espaço em branco (" ").
+```
 
-Desafio de lógica: estatísticas da sessão
-O desafio implementado registra o número de vitórias de cada jogador e os empates. A partir desses contadores, o programa calcula o total de partidas e a porcentagem de cada resultado:
+Cada posição pode conter `"X"`, `"O"` ou `" "` (espaço vazio) e é acessada por `tabuleiro[linha][coluna]`.
 
+## Desafio de lógica: estatísticas da sessão
+
+O jogo registra quantas partidas terminaram com vitória de **X**, vitória de **O** ou empate. A partir desses valores, calcula as porcentagens correspondentes:
+
+```python
 total_partidas = placar_x + placar_o + empates
 
 if total_partidas > 0:
     porc_x = (placar_x / total_partidas) * 100
     porc_o = (placar_o / total_partidas) * 100
     porc_empate = (empates / total_partidas) * 100
-O menu também informa qual jogador lidera o placar ou se ambos estão empatados. As estatísticas são mantidas enquanto o programa estiver aberto; elas não são gravadas em arquivo.
+```
 
-Cenários de teste
-Para verificar o funcionamento do projeto, podem ser executados os seguintes cenários:
+O programa também indica quem possui mais vitórias na sessão ou se o placar está empatado.
 
-Cenário	Comportamento esperado
-Vitória de X ou O	Identificar o vencedor e atualizar seu placar.
-Partida empatada	Informar o empate e atualizar o contador correspondente.
-Letra em vez de coordenada	Recusar a entrada e solicitar um valor válido.
-Campo vazio	Recusar a entrada e solicitar um valor válido.
-Coordenada fora de 0 a 2	Informar que a entrada é inválida.
-Casa já ocupada	Impedir a jogada e manter o turno.
-Opção inexistente no menu	Exibir aviso e solicitar outra opção.
-Nova partida	Limpar o tabuleiro e preservar o placar acumulado.
-Opção 9 na escolha da linha	Voltar ao menu principal.
-Opção 5 no menu	Encerrar o programa.
-Estrutura do repositório
+> O placar permanece disponível enquanto o programa estiver aberto. **Os dados não são salvos em arquivo** após o encerramento.
+
+## Cenários de teste
+
+Estes são os principais cenários para conferir o funcionamento:
+
+- **Vitória:** completar três símbolos iguais em uma linha, coluna ou diagonal.
+- **Empate:** preencher o tabuleiro sem formar uma sequência vencedora.
+- **Letra ou campo vazio:** verificar se a entrada inválida é recusada.
+- **Número fora do intervalo:** testar coordenadas diferentes de `0`, `1` e `2`.
+- **Casa ocupada:** tentar jogar duas vezes na mesma posição.
+- **Opção de menu inválida:** digitar uma opção fora de `1` a `5`.
+- **Nova partida:** verificar a limpeza do tabuleiro e a preservação do placar.
+- **Retorno ao menu:** digitar `9` quando o programa solicitar a linha.
+
+## Estrutura do repositório
+
+```text
 jogo-da-velha-coding/
-├── jogo_da_velha.py   # Código-fonte principal
-└── README.md          # Documentação do projeto
-Integrantes e divisão de tarefas
-O projeto foi desenvolvido por dois integrantes do curso de Bacharelado em Ciência da Computação da UNINASSAU:
+├── jogo_da_velha.py    # Código do jogo
+└── README.md           # Documentação
+```
 
-Integrante	Responsabilidades descritas no relatório
-Nicolas Sá Soares	Lógica de matrizes, placar acumulado e limpeza do tabuleiro.
-Guilherme Rodrigues Silva Galvão	Estruturação inicial do programa, laços de repetição e estatísticas avançadas.
-O histórico de alterações e contribuições pode ser consultado na aba Commits do repositório.
+## Integrantes
 
-Objetivo acadêmico
-Este projeto integra a 2ª Avaliação da disciplina de Coding e demonstra a utilização conjunta de:
+**Nicolas Sá Soares**  
+Lógica de matrizes, placar acumulado e limpeza do tabuleiro.
 
-Tipos de dados e variáveis;
-Operadores aritméticos, relacionais e lógicos;
-Estruturas condicionais;
-Estruturas de repetição;
-Matrizes bidimensionais e laços for aninhados;
-Validação de entradas e resolução de problemas de lógica.
-UNINASSAU — Ciência da Computação | Teresina (PI), 2026
-Autores: Nicolas Sá Soares e Guilherme Rodrigues Silva Galvão.
+**Guilherme Rodrigues Silva Galvão**  
+Estruturação inicial, laços de repetição e estatísticas da sessão.
 
+As contribuições registradas podem ser consultadas no histórico de commits do repositório.
+
+---
+
+**UNINASSAU — Bacharelado em Ciência da Computação**  
+**Disciplina:** Coding · **2ª Avaliação** · **Teresina (PI), 2026**
